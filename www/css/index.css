@@ -1,9 +1,76 @@
 * {
     -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+    box-sizing: border-box;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+}
+
+html, body {
+    height: 100%;
+    max-height: 100%;
 }
 
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: Lato, sans-serif;
+    overflow: hidden;
+    -ms-content-zooming: none; 
+    -ms-touch-action: none;
+}
+
+h1 {
+    font-weight: 300;    
+}
+
+.app {
+    text-align: center;
+    padding: 20px;
+}
+
+input {
+    padding: 6px 10px;
+    font-size: 1.2em;
+    width: 100%;
+}
+
+button {    
+    color: #ffffff;
+    background-color: #2780e3;
+    border: 1px solid #2780e3;
+    display: inline-block;
+    margin-bottom: 0;
+    text-align: center;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    white-space: nowrap;
+    padding: 10px 18px;
+    font-size: 15px;
+    line-height: 1.42857143;
+    border-radius: 0;
+}
+
+button:active {
+    background-color: #1967be;
+    border-color: #1862b5
+}
+
+button:focus, button:active:focus {
+    background-color: #1967be;
+    border-color: #10427b;
+}
+
+h1 {
+    margin-top: 0;
+}
+
+.main-menu button {
+    display: block;
+    margin: 10px auto 0 auto;
 }
