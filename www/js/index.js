@@ -1,49 +1,37 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
 var app = {
-    // Application Constructor
-    initialize: function() {
-        this.bindEvents();
-    },
-    // Bind Event Listeners
-    //
-    // Bind any events that are required on startup. Common events are:
-    // 'load', 'deviceready', 'offline', and 'online'.
+    domElements: {},
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+        document.addEventListener('deviceready', app.onDeviceReady, false);
+        app.domElements.buttonAbout.addEventListener('click', app.onAboutClick);
     },
-    // deviceready Event Handler
-    //
-    // The scope of 'this' is the event. In order to call the 'receivedEvent'
-    // function, we must explicitly call 'app.receivedEvent(...);'
+    cacheDomLookups: function() {
+        var uniqueItems = document.querySelectorAll('[id]');
+        for(var i = 0; i<uniqueItems.length; i++) {
+            var singleItem = uniqueItems[i];
+            if(singleItem.id) {
+                var camelCasedId = singleItem.id.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
+                app.domElements[camelCasedId] = uniqueItems[i];            
+            }
+        }
+    },
+    changeState: function(newState) {
+        var splittedClasses = app.domElements.container.className.split(' ');
+        splittedClasses.forEach(function(element, index, array) {
+           if(element.indexOf('state-') === 0) {
+               array.splice(index, 1);
+           } 
+        });
+        splittedClasses.push('state-' + newState);
+        app.domElements.container.className = splittedClasses.join(' ');
+    },
+    initialize: function() {
+        app.cacheDomLookups();
+        app.bindEvents();
+    },
+    onAboutClick: function() {
+      alert('Hello!');  
+    },
     onDeviceReady: function() {
-        app.receivedEvent('deviceready');
-    },
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
-
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
-
-        console.log('Received Event: ' + id);
+        app.changeState('home');
     }
 };
