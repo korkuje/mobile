@@ -3,6 +3,8 @@
 	var app = window.app;
 	var initialState = 'home';
 	var router = {};
+
+	var currentController;
 	var stateContainers;	
 
 	router.changeState = function (newState, data) {
@@ -17,9 +19,15 @@
 			}
 		}
 		
+		if(currentController && currentController.onDeactivate) {
+			currentController.onDeactivate();
+		}
+		
 		if(destinationController.onActivate) {
 			destinationController.onActivate(data);
 		}
+		
+		currentController = destinationController;
 	};
 	
 	router.init = function() {
