@@ -1,0 +1,27 @@
+'use strict';
+
+(function() {
+    var app = window.app;
+    var controller = {};
+	
+    controller.init = function() {
+        //_renderProblemsForLine();
+    }
+    
+    function _renderProblemsForLine(lineName, problems) {
+        app.domElements.checkTitle.innerText = lineName;
+        
+        // clear
+        while (app.domElements.checkProblemList.firstChild) {
+            app.domElements.checkProblemList.removeChild(app.domElements.checkProblemList.firstChild);
+        }
+
+        for (var i = 0; i < problems.length; i++) {
+            var singleElement = document.createElement('li');
+            singleElement.innerText = 'problem';
+            app.domElements.checkProblemList.appendChild(singleElement);
+        }
+    }
+	
+    window.app.controllers.push(controller);
+})();
