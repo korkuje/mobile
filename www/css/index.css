@@ -74,19 +74,3 @@ h1 {
     display: block;
     margin: 10px auto 0 auto;
 }
-
-.container-home {
-    display: none;
-}
-
-.state-home .container-home {
-    display: block;
-}
-
-.container-check {
-    display: none;
-}
-
-.state-check .container-check {
-    display: block;
-}

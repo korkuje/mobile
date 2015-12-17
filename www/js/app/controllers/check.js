@@ -3,9 +3,11 @@
 (function() {
     var app = window.app;
     var controller = {};
-	
-    controller.init = function() {
-        //_renderProblemsForLine();
+    
+    controller.name = 'check';
+    
+    controller.onActivate = function(data) {
+        _renderProblemsForLine(data.lineName, data.problems);    
     }
     
     function _renderProblemsForLine(lineName, problems) {

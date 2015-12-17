@@ -5,9 +5,11 @@
 	var controller = {};
 	var router = window.app.router;
 
-    controller.init = function() {
+    controller.onInit = function() {
         _bindEvents();
     }
+    
+    controller.name = 'home';
 
     window.app.controllers.push(controller);
 
@@ -24,8 +26,10 @@
         var lineName = app.domElements.lineName.value;
         if (lineName) {
             api.requestTrafficProblemsForLine(lineName, function (problems) {
-				console.error('Not reimplemented yet');
-                router.changeState('check');
+                router.changeState('check', {
+                    lineName: lineName,
+                    problems: problems
+                });
             });
         }
     }

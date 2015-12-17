@@ -1,43 +1,53 @@
 'use strict';
 (function () {
 	var app = window.app;
+	var initialState = 'home';
 	var router = {};
-	
+	var stateContainers;	
+
 	router.changeState = function (newState, data) {
-		var capitalizedState = newState.charAt(0).toUpperCase() + newState.slice(1);
-		var mainContainer = app.domElements.containerMain || document.getElementById('container-main');
-
-		while (mainContainer.firstChild) {
-			mainContainer.removeChild(mainContainer.firstChild);
-		}
-
-		mainContainer.innerHTML = _loadView(newState);
-
-		var splittedClasses = mainContainer.className.split(' ');
-		splittedClasses.forEach(function (element, index, array) {
-			if (element.indexOf('state-') === 0) {
-				array.splice(index, 1);
+		var destinationController = _resolveDestinationController(newState);
+		
+		for(var i = 0; i<stateContainers.length; i++) {
+			if(stateContainers[i].classList.contains('container-' + newState)) {
+				stateContainers[i].style.display='block';
 			}
-		});
-		splittedClasses.push('state-' + newState);
-		mainContainer.className = splittedClasses.join(' ');
+			else {
+				stateContainers[i].style.display='none';
+			}
+		}
+		
+		if(destinationController.onActivate) {
+			destinationController.onActivate(data);
+		}
 	};
 	
-	router.init = function(initialState) {
+	router.init = function() {
+		stateContainers = document.querySelectorAll('[class^="container-"]');
+		
+		document.addEventListener('backbutton', _onBackButton, false);
 		router.changeState(initialState);
 	}
 
 	window.app.router = router;
 	
-	function _loadView(name) {
-		var request = new XMLHttpRequest();
-		request.open('GET', './views/' + name + '.html', false);
-		request.send();
-		if (request.status === 200) {
-			return request.responseText;
+	function _onBackButton() {
+		router.changeState(initialState);
+	}
+	
+	function _resolveDestinationController(name) {
+		var filteredControllers = app.controllers.filter(function(c) {
+			return c.name === name;
+		});
+		
+		if(filteredControllers.length === 1) {
+			return filteredControllers[0];
+		}
+		else if(filteredControllers.length > 1) {
+			throw 'Cannot resolve destination controller. Two controllers with name "' + name + '" were found.';
 		}
 		else {
-			throw 'Failed to load view "' + name + '".';
-			}
+			throw 'Cannot resolve destination controller. There is no controller with name "' + name + '".';
+		}
 	}
 })();
