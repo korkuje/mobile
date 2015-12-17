@@ -7,6 +7,8 @@
 
 html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
     max-height: 100%;
 }
 
@@ -28,14 +30,19 @@ h1 {
 }
 
 .app {
-    text-align: center;
     padding: 20px;
+    text-align: center;
 }
 
-input {
+input[type='text'] {
     padding: 6px 10px;
     font-size: 1.2em;
     width: 100%;
+}
+
+label {
+    display: block;
+    text-align: left;
 }
 
 button {    
@@ -53,7 +60,9 @@ button {
     padding: 10px 18px;
     font-size: 15px;
     line-height: 1.42857143;
+    margin: 10px auto 0 auto;
     border-radius: 0;
+    display: block;
 }
 
 button:active {
@@ -70,7 +79,10 @@ h1 {
     margin-top: 0;
 }
 
-.main-menu button {
-    display: block;
+ul {
+    text-align: left;
+}
+
+.container-add label {
     margin: 10px auto 0 auto;
 }

@@ -1,5 +1,4 @@
 'use strict';
-
 (function() {
     var app = window.app;
     var controller = {};
@@ -8,6 +7,14 @@
     
     controller.onActivate = function(data) {
         _renderProblemsForLine(data.lineName, data.problems);    
+    }
+    
+    controller.onInit = function() {
+        app.domElements.checkButtonAdd.addEventListener('click', _onAddClick);
+    }
+    
+    function _onAddClick() {
+        app.router.changeState('add');
     }
     
     function _renderProblemsForLine(lineName, problems) {
