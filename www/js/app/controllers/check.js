@@ -14,7 +14,7 @@
     }
     
     function _onAddClick() {
-        app.router.changeState('add');
+        app.router.changeState('add', app.domElements.checkTitle.innerText);
     }
     
     function _renderProblemsForLine(lineName, problems) {
