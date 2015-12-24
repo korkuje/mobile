@@ -15,9 +15,14 @@
     window.app.controllers.push(controller);
 
     function _bindEvents() {
-        app.domElements.buttonAbout.addEventListener('click', _onAboutClick);
-        app.domElements.buttonAdd.addEventListener('click', _onAddClick);
-        app.domElements.buttonCheck.addEventListener('click', _onCheckClick);
+        app.domElements.homeButtonAbout.addEventListener('click', _onAboutClick);
+        app.domElements.homeButtonAdd.addEventListener('click', _onAddClick);
+        app.domElements.homeButtonCheck.addEventListener('click', _onCheckClick);
+    }
+    
+    function _handleNoLineSpecified() {
+            alert('Proszę podać nazwę linii.');
+            app.domElements.homeLineName.focus();
     }
 
     function _onAboutClick() {
@@ -25,15 +30,18 @@
     }
 
     function _onAddClick() {
-        var lineName = app.domElements.lineName.value;
+        var lineName = app.domElements.homeLineName.value;
 
         if (lineName) {
             router.changeState('add', lineName);
         }
+        else {
+            _handleNoLineSpecified();
+        }
     }
 
     function _onCheckClick(event) {
-        var lineName = app.domElements.lineName.value;
+        var lineName = app.domElements.homeLineName.value;
 
         if (lineName) {
             helpers.makePending(event.target);
@@ -44,6 +52,9 @@
                     problems: problems
                 });
             });
+        }
+        else {
+            _handleNoLineSpecified();
         }
     }
 })();
