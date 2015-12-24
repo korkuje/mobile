@@ -14,7 +14,7 @@
         setTimeout(function () {
             if (callback) {
                 callback([{
-                    type: 2,
+                    reason: 2,
                     createdAt: new Date().toISOString(),
                     lineName: lineName
                 }]);

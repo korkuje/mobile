@@ -1,14 +1,25 @@
 'use strict';
 (function () {
     var constants = {
-        problemTypes: {
-            OTHER: 0,
-            
-            ACCIDENT: 1,
-            BREAKDOWN: 2,
-            TRAFFIC_JAM: 3
-        }
+        problemTypes: [
+            {
+                id: 0,
+                name: 'Inny/Nie wiem'
+            },
+            {
+                id: 1,
+                name: 'Wypadek na drodze'
+            },
+            {
+                id: 2,
+                name: 'Awaria pojazdu'
+            },
+            {
+                id: 3,
+                name: 'Wzmożony ruch'
+            }
+        ]
     };
-    
+
     window.app.constants = constants;
 })();
