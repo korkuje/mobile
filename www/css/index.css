@@ -45,14 +45,11 @@ label {
     text-align: left;
 }
 
-button {    
+button {
     color: #ffffff;
-    background-color: #2780e3;
-    border: 1px solid #2780e3;
     display: inline-block;
     margin-bottom: 0;
     text-align: center;
-    vertical-align: middle;
     -ms-touch-action: manipulation;
     touch-action: manipulation;
     cursor: pointer;
@@ -63,17 +60,23 @@ button {
     margin: 10px auto 0 auto;
     border-radius: 0;
     display: block;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+button, button.pending:active, button.pending:active:focus {    
+    background-color: #2780e3;
+    border: 1px solid #2780e3;
 }
 
-button:active {
+button:active, button:active:focus {
     background-color: #1967be;
     border-color: #1862b5
 }
-
-button:focus, button:active:focus {
+/*
+button:focus, button:active:focus  {
     background-color: #1967be;
     border-color: #10427b;
-}
+}*/
 
 h1 {
     margin-top: 0;
@@ -85,4 +88,10 @@ ul {
 
 .container-add label {
     margin: 10px auto 0 auto;
+}
+
+button.pending {
+    color: transparent;
+    pointer-events: none;
+    background-image: url('../img/button-preloader.gif');
 }

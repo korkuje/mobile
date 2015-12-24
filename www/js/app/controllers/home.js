@@ -33,8 +33,11 @@
 
     function _onCheckClick() {
         var lineName = app.domElements.lineName.value;
+        
         if (lineName) {
+            app.domElements.buttonCheck.className += ' pending';
             api.requestTrafficProblemsForLine(lineName, function (problems) {
+                app.domElements.buttonCheck.className = app.domElements.buttonCheck.className.replace(' pending', '');
                 router.changeState('check', {
                     lineName: lineName,
                     problems: problems

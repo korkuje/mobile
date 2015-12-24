@@ -2,17 +2,27 @@
 (function () {
     var api = {};
 
+    api.addTrafficProblem = function (formData, callback) {
+        setTimeout(function () {
+            if (callback) {
+                callback();
+            }
+        }, 2000);
+    };
+
     api.requestTrafficProblemsForLine = function (lineName, callback) {
-        if (callback) {
-            callback([{
-                type: 2,
-                createdAt: new Date().toISOString(),
-                lineName: lineName
-            }]);
-        }
-        else {
-            console.warn('requestTrafficProblemsForLine has no callback. You\'ve forgotten about it, haven\'t you?');
-        }
+        setTimeout(function () {
+            if (callback) {
+                callback([{
+                    type: 2,
+                    createdAt: new Date().toISOString(),
+                    lineName: lineName
+                }]);
+            }
+            else {
+                console.warn('requestTrafficProblemsForLine has no callback. You\'ve forgotten about it, haven\'t you?');
+            }
+        }, 2000);
     };
 
     window.app.api = api;
