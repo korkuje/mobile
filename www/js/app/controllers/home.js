@@ -3,6 +3,7 @@
     var api = window.app.api;
     var app = window.app;
     var controller = {};
+    var helpers = window.app.helpers;
     var router = window.app.router;
 
     controller.onInit = function () {
@@ -31,13 +32,13 @@
         }
     }
 
-    function _onCheckClick() {
+    function _onCheckClick(event) {
         var lineName = app.domElements.lineName.value;
-        
+
         if (lineName) {
-            app.domElements.buttonCheck.className += ' pending';
+            helpers.makePending(event.target);
             api.requestTrafficProblemsForLine(lineName, function (problems) {
-                app.domElements.buttonCheck.className = app.domElements.buttonCheck.className.replace(' pending', '');
+                helpers.unmakePending(event.target);
                 router.changeState('check', {
                     lineName: lineName,
                     problems: problems

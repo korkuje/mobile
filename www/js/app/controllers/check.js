@@ -14,11 +14,11 @@
     }
     
     function _onAddClick() {
-        app.router.changeState('add', app.domElements.checkTitle.innerText);
+        app.router.changeState('add', app.domElements.checkLineName.innerText);
     }
     
     function _renderProblemsForLine(lineName, problems) {
-        app.domElements.checkTitle.innerText = lineName;
+        app.domElements.checkLineName.innerText = lineName;
         
         // clear
         while (app.domElements.checkProblemList.firstChild) {

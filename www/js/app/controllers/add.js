@@ -1,7 +1,9 @@
 'use strict';
 (function () {
+    var api = window.app.api;
     var app = window.app;
     var controller = {};
+    var helpers = window.app.helpers;
 
     var formValues = {
         lineName: '',
@@ -32,10 +34,10 @@
         app.domElements.addConfirm.addEventListener('click', _onConfirmClick);
     }
 
-    function _onConfirmClick() {
-        app.domElements.addConfirm.className += ' pending';
-        app.api.addTrafficProblem(formValues, function () {
-            app.domElements.addConfirm.className = app.domElements.addConfirm.className.replace(' pending', '');
+    function _onConfirmClick(event) {
+        helpers.makePending(event.target);
+        api.addTrafficProblem(formValues, function () {
+            helpers.unmakePending(event.target);
             app.router.changeState('home');
             alert('Dziękujemy za zgłoszenie. :)');
         });
