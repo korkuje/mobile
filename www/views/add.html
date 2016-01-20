@@ -1,19 +1,34 @@
 <div class="container-add">
-	<h1 id="add-title">Zgłoś nowe utrudnienie</h1>
-	<label>
-		Linia: <span id="add-line-name"></span>
-	</label>
-	<label>
-		<input type="radio" name="reason" value="1"> Wypadek na drodze
-	</label>
-	<label>
-		<input type="radio" name="reason" value="2"> Awaria pojazdu
-	</label>
-	<label>
-		<input type="radio" name="reason" value="3"> Wzmożony ruch
-	</label>
-	<label>
-		<input type="radio" name="reason" value="0"> Inne/Nie wiem
-	</label>
-	<button type="button" id="add-confirm">Zatwierdź</button>
+    <header>
+        <nav>
+            <a href="#">&#127968;&#xfe0e;</a>
+            <a>?</a>
+        </nav>
+        <span>Zgłoś utrudnienie</span>
+    </header>
+    <section>
+        <possible-reason-list>
+            <item>
+                <label for="reason1">
+                    <input type="radio" name="reason" id="reason1" /> Awaria pojazdu
+                </label>
+            </item>
+            <item>
+                <label for="reason2">
+                    <input type="radio" name="reason" id="reason2" /> Wzmożony ruch
+                </label>
+            </item>
+            <item>
+                <label for="reason3">
+                    <input type="radio" name="reason" id="reason3" /> Wypadek na drodze
+                </label>
+            </item>
+            <item>
+                <label for="reason4">
+                    <input type="radio" name="reason" id="reason4" /> Inne/nie wiem
+                </label>
+            </item>
+        </possible-reason-list>
+        <button id="add-confirm">Zatwierdź</a>
+    </section>
 </div>

@@ -17,12 +17,6 @@
     function _bindEvents() {
         app.domElements.homeButtonAbout.addEventListener('click', _onAboutClick);
         app.domElements.homeButtonAdd.addEventListener('click', _onAddClick);
-        app.domElements.homeButtonCheck.addEventListener('click', _onCheckClick);
-    }
-    
-    function _handleNoLineSpecified() {
-            alert('Proszę podać nazwę linii.');
-            app.domElements.homeLineName.focus();
     }
 
     function _onAboutClick() {
@@ -30,31 +24,6 @@
     }
 
     function _onAddClick() {
-        var lineName = app.domElements.homeLineName.value;
-
-        if (lineName) {
-            router.changeState('add', lineName);
-        }
-        else {
-            _handleNoLineSpecified();
-        }
-    }
-
-    function _onCheckClick(event) {
-        var lineName = app.domElements.homeLineName.value;
-
-        if (lineName) {
-            helpers.makePending(event.target);
-            api.requestTrafficProblemsForLine(lineName, function (problems) {
-                helpers.unmakePending(event.target);
-                router.changeState('check', {
-                    lineName: lineName,
-                    problems: problems
-                });
-            });
-        }
-        else {
-            _handleNoLineSpecified();
-        }
+        router.changeState('add');
     }
 })();

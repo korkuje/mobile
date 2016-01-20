@@ -15,10 +15,7 @@
 
     controller.name = 'add';
 
-    controller.onActivate = function (data) {
-        formValues.lineName = data;
-        app.domElements.addLineName.innerText = data;
-
+    controller.onActivate = function () {
         geolocationWatchId = navigator.geolocation.watchPosition(_onGeolocationSuccess, _onGeolocationError, {
             timeout: 1000 * 60 * 3,
             enableHighAccuracy: true,

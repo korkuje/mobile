@@ -10,6 +10,7 @@ html, body {
     margin: 0;
     padding: 0;
     max-height: 100%;
+    width: 100%;
 }
 
 body {
@@ -18,80 +19,105 @@ body {
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     -moz-user-select: none;
     -ms-user-select: none;
+    touch-action: none;
+    -ms-touch-action: none;
     user-select: none;
     font-family: Lato, sans-serif;
     overflow: hidden;
     -ms-content-zooming: none; 
     -ms-touch-action: none;
+    background: #fff;
+    font-family: Lato, Arial, Helvetica, sans-serif;
 }
 
-h1 {
-    font-weight: 300;    
+header {
+    background: #009FDA;
+    padding: 1em;
 }
 
-.app {
-    padding: 20px;
-    text-align: center;
+header span {
+    margin: 0;
+    font-size: 1.5em;
+    line-height: 2em;
+    font-weight: 800;
+    color: #eee;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-input[type='text'] {
-    padding: 6px 10px;
-    font-size: 1.2em;
-    width: 100%;
+nav {
+    float: right;
 }
 
-label {
+nav a {
+    background: #fff;
+    color: #54ACFA;
     display: block;
-    text-align: left;
+    width: 2em;
+    font-weight: 600;
+    height: 2em;
+    line-height: 2em;
+    font-size: 1.2em;
+    cursor: pointer;
+    border-radius: 50%;
+    float: left;
+    text-align: center;
+    margin-left: 1em;
+    text-decoration: none;
+}
+
+nav a:active {
+    background: #106894;
+    color: #fff;
+}
+
+problem-list item {
+    padding: 0.75em;
+}
+possible-reason-list item label {
+    padding: 1.25em;
+    display: block;
+}
+
+problem-list item,
+possible-reason-list item {
+    border-top: 1px solid transparent;
+    display: block;
+}
+
+problem-list item:active,
+possible-reason-list item:active {
+    background: #106894;
+    color: #fff;
+}
+
+problem-list item+item,
+possible-reason-list item+item {
+    border-top-color: #d5d5d5;
+}
+
+em {
+    color: #888;
+    font-style: normal;
 }
 
 button {
-    color: #ffffff;
-    display: inline-block;
-    margin-bottom: 0;
-    text-align: center;
-    -ms-touch-action: manipulation;
-    touch-action: manipulation;
-    cursor: pointer;
-    white-space: nowrap;
-    padding: 10px 18px;
-    font-size: 15px;
-    line-height: 1.42857143;
-    margin: 10px auto 0 auto;
-    border-radius: 0;
     display: block;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-button, button.pending:active, button.pending:active:focus {    
-    background-color: #2780e3;
-    border: 1px solid #2780e3;
-}
-
-button:active, button:active:focus {
-    background-color: #1967be;
-    border-color: #1862b5
-}
-/*
-button:focus, button:active:focus  {
-    background-color: #1967be;
-    border-color: #10427b;
-}*/
-
-h1 {
-    margin-top: 0;
+    width: 90%;
+    margin: 1em auto;
+    max-width: 40%;
+    text-align: center;
+    padding: 1em;
+    border: 2px solid #106894;
+    font-weight: bold;
+    line-height: 1em;
+    text-decoration: none;
+    color: #106894;
+    background: #fff;
 }
 
-ul {
-    text-align: left;
-}
-
-.container-add label {
-    margin: 10px auto 0 auto;
-}
-
-button.pending {
-    color: transparent;
-    pointer-events: none;
-    background-image: url('../img/button-preloader.gif');
+button:active {
+    background: #106894;
+    color: #fff;
 }
